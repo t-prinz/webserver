@@ -1,0 +1,29 @@
+---
+- name:  Setup web server
+  hosts:  all
+  vars:
+    web_server_content:  "Default message"
+
+  tasks:
+    - name:  Install web server
+      yum:
+        name:  httpd
+        state:  latest
+
+    - name:  Enable web server
+      service:
+        name:  httpd
+        enabled:  Yes
+        state:  started
+
+    - name:  Enable port
+      firewalld:
+        immediate:  True
+        permanent:  Yes
+        service:  http
+        state:  enabled
+
+    - name:  Initialize content with {{ web_server_content }}
+      copy:
+        content:  "{{ web_server_content }}"
+        dest:  /var/www/html/index.html
