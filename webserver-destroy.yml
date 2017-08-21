@@ -3,9 +3,8 @@
   hosts:  all
   tasks:
     - name:  Remove index.html file
-      copy:
-        content:  ""
-        dest:  /var/www/html/index.html
+      file:
+        path:  /var/www/html/index.html
         state:  absent
 
     - name:  Disble port
