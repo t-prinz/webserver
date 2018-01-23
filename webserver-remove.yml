@@ -14,12 +14,6 @@
         service:  http
         state:  disabled
 
-    - name:  Disble web server
-      service:
-        name:  httpd
-        enabled:  No
-        state:  stopped
-
     - name:  Remove web server
       yum:
         name:  httpd
